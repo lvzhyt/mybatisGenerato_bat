@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tg.citySite.dao.ItemMapper" >
+  <resultMap id="BaseResultMap" type="com.tg.citySite.model.Item" >
+    <id column="item_id" property="itemId" jdbcType="BIGINT" />
+    <result column="item_name" property="itemName" jdbcType="VARCHAR" />
+    <result column="item_status" property="itemStatus" jdbcType="INTEGER" />
+    <result column="keywords" property="keywords" jdbcType="VARCHAR" />
+    <result column="brand" property="brand" jdbcType="BIGINT" />
+    <result column="category_id" property="categoryId" jdbcType="BIGINT" />
+    <result column="attr_sale" property="attrSale" jdbcType="VARCHAR" />
+    <result column="attributes" property="attributes" jdbcType="VARCHAR" />
+    <result column="after_service" property="afterService" jdbcType="VARCHAR" />
+    <result column="guide_price" property="guidePrice" jdbcType="DECIMAL" />
+    <result column="has_price" property="hasPrice" jdbcType="INTEGER" />
+    <result column="inventory" property="inventory" jdbcType="INTEGER" />
+    <result column="market_price" property="marketPrice" jdbcType="DECIMAL" />
+    <result column="listing_time" property="listingTime" jdbcType="TIMESTAMP" />
+    <result column="delisting_time" property="delistingTime" jdbcType="TIMESTAMP" />
+    <result column="origin" property="origin" jdbcType="VARCHAR" />
+    <result column="packing_list" property="packingList" jdbcType="VARCHAR" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="seller_id" property="sellerId" jdbcType="BIGINT" />
+    <result column="shop_id" property="shopId" jdbcType="BIGINT" />
+    <result column="volume" property="volume" jdbcType="DECIMAL" />
+    <result column="weight" property="weight" jdbcType="DECIMAL" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.tg.citySite.model.Item" extends="BaseResultMap" >
+    <result column="describe_url" property="describeUrl" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    item_id, item_name, item_status, keywords, brand, category_id, attr_sale, attributes, 
+    after_service, guide_price, has_price, inventory, market_price, listing_time, delisting_time, 
+    origin, packing_list, product_id, seller_id, shop_id, volume, weight, created
+  </sql>
+  <sql id="Blob_Column_List" >
+    describe_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from item
+    where item_id = #{itemId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from item
+    where item_id = #{itemId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tg.citySite.model.Item" >
+    insert into item (item_id, item_name, item_status, 
+      keywords, brand, category_id, 
+      attr_sale, attributes, after_service, 
+      guide_price, has_price, inventory, 
+      market_price, listing_time, delisting_time, 
+      origin, packing_list, product_id, 
+      seller_id, shop_id, volume, 
+      weight, created, describe_url
+      )
+    values (#{itemId,jdbcType=BIGINT}, #{itemName,jdbcType=VARCHAR}, #{itemStatus,jdbcType=INTEGER}, 
+      #{keywords,jdbcType=VARCHAR}, #{brand,jdbcType=BIGINT}, #{categoryId,jdbcType=BIGINT}, 
+      #{attrSale,jdbcType=VARCHAR}, #{attributes,jdbcType=VARCHAR}, #{afterService,jdbcType=VARCHAR}, 
+      #{guidePrice,jdbcType=DECIMAL}, #{hasPrice,jdbcType=INTEGER}, #{inventory,jdbcType=INTEGER}, 
+      #{marketPrice,jdbcType=DECIMAL}, #{listingTime,jdbcType=TIMESTAMP}, #{delistingTime,jdbcType=TIMESTAMP}, 
+      #{origin,jdbcType=VARCHAR}, #{packingList,jdbcType=VARCHAR}, #{productId,jdbcType=BIGINT}, 
+      #{sellerId,jdbcType=BIGINT}, #{shopId,jdbcType=BIGINT}, #{volume,jdbcType=DECIMAL}, 
+      #{weight,jdbcType=DECIMAL}, #{created,jdbcType=TIMESTAMP}, #{describeUrl,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tg.citySite.model.Item" >
+    insert into item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemId != null" >
+        item_id,
+      </if>
+      <if test="itemName != null" >
+        item_name,
+      </if>
+      <if test="itemStatus != null" >
+        item_status,
+      </if>
+      <if test="keywords != null" >
+        keywords,
+      </if>
+      <if test="brand != null" >
+        brand,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="attrSale != null" >
+        attr_sale,
+      </if>
+      <if test="attributes != null" >
+        attributes,
+      </if>
+      <if test="afterService != null" >
+        after_service,
+      </if>
+      <if test="guidePrice != null" >
+        guide_price,
+      </if>
+      <if test="hasPrice != null" >
+        has_price,
+      </if>
+      <if test="inventory != null" >
+        inventory,
+      </if>
+      <if test="marketPrice != null" >
+        market_price,
+      </if>
+      <if test="listingTime != null" >
+        listing_time,
+      </if>
+      <if test="delistingTime != null" >
+        delisting_time,
+      </if>
+      <if test="origin != null" >
+        origin,
+      </if>
+      <if test="packingList != null" >
+        packing_list,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="sellerId != null" >
+        seller_id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="volume != null" >
+        volume,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="describeUrl != null" >
+        describe_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemId != null" >
+        #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemStatus != null" >
+        #{itemStatus,jdbcType=INTEGER},
+      </if>
+      <if test="keywords != null" >
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null" >
+        #{brand,jdbcType=BIGINT},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="attrSale != null" >
+        #{attrSale,jdbcType=VARCHAR},
+      </if>
+      <if test="attributes != null" >
+        #{attributes,jdbcType=VARCHAR},
+      </if>
+      <if test="afterService != null" >
+        #{afterService,jdbcType=VARCHAR},
+      </if>
+      <if test="guidePrice != null" >
+        #{guidePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="hasPrice != null" >
+        #{hasPrice,jdbcType=INTEGER},
+      </if>
+      <if test="inventory != null" >
+        #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="marketPrice != null" >
+        #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="listingTime != null" >
+        #{listingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delistingTime != null" >
+        #{delistingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="origin != null" >
+        #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="packingList != null" >
+        #{packingList,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="volume != null" >
+        #{volume,jdbcType=DECIMAL},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="describeUrl != null" >
+        #{describeUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tg.citySite.model.Item" >
+    update item
+    <set >
+      <if test="itemName != null" >
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemStatus != null" >
+        item_status = #{itemStatus,jdbcType=INTEGER},
+      </if>
+      <if test="keywords != null" >
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null" >
+        brand = #{brand,jdbcType=BIGINT},
+      </if>
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="attrSale != null" >
+        attr_sale = #{attrSale,jdbcType=VARCHAR},
+      </if>
+      <if test="attributes != null" >
+        attributes = #{attributes,jdbcType=VARCHAR},
+      </if>
+      <if test="afterService != null" >
+        after_service = #{afterService,jdbcType=VARCHAR},
+      </if>
+      <if test="guidePrice != null" >
+        guide_price = #{guidePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="hasPrice != null" >
+        has_price = #{hasPrice,jdbcType=INTEGER},
+      </if>
+      <if test="inventory != null" >
+        inventory = #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="marketPrice != null" >
+        market_price = #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="listingTime != null" >
+        listing_time = #{listingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delistingTime != null" >
+        delisting_time = #{delistingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="origin != null" >
+        origin = #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="packingList != null" >
+        packing_list = #{packingList,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="sellerId != null" >
+        seller_id = #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="volume != null" >
+        volume = #{volume,jdbcType=DECIMAL},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="describeUrl != null" >
+        describe_url = #{describeUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.tg.citySite.model.Item" >
+    update item
+    set item_name = #{itemName,jdbcType=VARCHAR},
+      item_status = #{itemStatus,jdbcType=INTEGER},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      brand = #{brand,jdbcType=BIGINT},
+      category_id = #{categoryId,jdbcType=BIGINT},
+      attr_sale = #{attrSale,jdbcType=VARCHAR},
+      attributes = #{attributes,jdbcType=VARCHAR},
+      after_service = #{afterService,jdbcType=VARCHAR},
+      guide_price = #{guidePrice,jdbcType=DECIMAL},
+      has_price = #{hasPrice,jdbcType=INTEGER},
+      inventory = #{inventory,jdbcType=INTEGER},
+      market_price = #{marketPrice,jdbcType=DECIMAL},
+      listing_time = #{listingTime,jdbcType=TIMESTAMP},
+      delisting_time = #{delistingTime,jdbcType=TIMESTAMP},
+      origin = #{origin,jdbcType=VARCHAR},
+      packing_list = #{packingList,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=BIGINT},
+      seller_id = #{sellerId,jdbcType=BIGINT},
+      shop_id = #{shopId,jdbcType=BIGINT},
+      volume = #{volume,jdbcType=DECIMAL},
+      weight = #{weight,jdbcType=DECIMAL},
+      created = #{created,jdbcType=TIMESTAMP},
+      describe_url = #{describeUrl,jdbcType=LONGVARCHAR}
+    where item_id = #{itemId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tg.citySite.model.Item" >
+    update item
+    set item_name = #{itemName,jdbcType=VARCHAR},
+      item_status = #{itemStatus,jdbcType=INTEGER},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      brand = #{brand,jdbcType=BIGINT},
+      category_id = #{categoryId,jdbcType=BIGINT},
+      attr_sale = #{attrSale,jdbcType=VARCHAR},
+      attributes = #{attributes,jdbcType=VARCHAR},
+      after_service = #{afterService,jdbcType=VARCHAR},
+      guide_price = #{guidePrice,jdbcType=DECIMAL},
+      has_price = #{hasPrice,jdbcType=INTEGER},
+      inventory = #{inventory,jdbcType=INTEGER},
+      market_price = #{marketPrice,jdbcType=DECIMAL},
+      listing_time = #{listingTime,jdbcType=TIMESTAMP},
+      delisting_time = #{delistingTime,jdbcType=TIMESTAMP},
+      origin = #{origin,jdbcType=VARCHAR},
+      packing_list = #{packingList,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=BIGINT},
+      seller_id = #{sellerId,jdbcType=BIGINT},
+      shop_id = #{shopId,jdbcType=BIGINT},
+      volume = #{volume,jdbcType=DECIMAL},
+      weight = #{weight,jdbcType=DECIMAL},
+      created = #{created,jdbcType=TIMESTAMP}
+    where item_id = #{itemId,jdbcType=BIGINT}
+  </update>
+</mapper>

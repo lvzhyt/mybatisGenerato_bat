@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tg.citySite.dao.ItemSkuPictureMapper" >
+  <resultMap id="BaseResultMap" type="com.tg.citySite.model.ItemSkuPicture" >
+    <id column="picture_id" property="pictureId" jdbcType="BIGINT" />
+    <result column="picture_url" property="pictureUrl" jdbcType="VARCHAR" />
+    <result column="seller_id" property="sellerId" jdbcType="BIGINT" />
+    <result column="shop_id" property="shopId" jdbcType="BIGINT" />
+    <result column="sku_id" property="skuId" jdbcType="BIGINT" />
+    <result column="sort_number" property="sortNumber" jdbcType="INTEGER" />
+    <result column="picture_status" property="pictureStatus" jdbcType="INTEGER" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    picture_id, picture_url, seller_id, shop_id, sku_id, sort_number, picture_status, 
+    created, modified
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from item_sku_picture
+    where picture_id = #{pictureId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from item_sku_picture
+    where picture_id = #{pictureId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tg.citySite.model.ItemSkuPicture" >
+    insert into item_sku_picture (picture_id, picture_url, seller_id, 
+      shop_id, sku_id, sort_number, 
+      picture_status, created, modified
+      )
+    values (#{pictureId,jdbcType=BIGINT}, #{pictureUrl,jdbcType=VARCHAR}, #{sellerId,jdbcType=BIGINT}, 
+      #{shopId,jdbcType=BIGINT}, #{skuId,jdbcType=BIGINT}, #{sortNumber,jdbcType=INTEGER}, 
+      #{pictureStatus,jdbcType=INTEGER}, #{created,jdbcType=TIMESTAMP}, #{modified,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tg.citySite.model.ItemSkuPicture" >
+    insert into item_sku_picture
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pictureId != null" >
+        picture_id,
+      </if>
+      <if test="pictureUrl != null" >
+        picture_url,
+      </if>
+      <if test="sellerId != null" >
+        seller_id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="skuId != null" >
+        sku_id,
+      </if>
+      <if test="sortNumber != null" >
+        sort_number,
+      </if>
+      <if test="pictureStatus != null" >
+        picture_status,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="modified != null" >
+        modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pictureId != null" >
+        #{pictureId,jdbcType=BIGINT},
+      </if>
+      <if test="pictureUrl != null" >
+        #{pictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=BIGINT},
+      </if>
+      <if test="sortNumber != null" >
+        #{sortNumber,jdbcType=INTEGER},
+      </if>
+      <if test="pictureStatus != null" >
+        #{pictureStatus,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null" >
+        #{modified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tg.citySite.model.ItemSkuPicture" >
+    update item_sku_picture
+    <set >
+      <if test="pictureUrl != null" >
+        picture_url = #{pictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerId != null" >
+        seller_id = #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="skuId != null" >
+        sku_id = #{skuId,jdbcType=BIGINT},
+      </if>
+      <if test="sortNumber != null" >
+        sort_number = #{sortNumber,jdbcType=INTEGER},
+      </if>
+      <if test="pictureStatus != null" >
+        picture_status = #{pictureStatus,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null" >
+        modified = #{modified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where picture_id = #{pictureId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tg.citySite.model.ItemSkuPicture" >
+    update item_sku_picture
+    set picture_url = #{pictureUrl,jdbcType=VARCHAR},
+      seller_id = #{sellerId,jdbcType=BIGINT},
+      shop_id = #{shopId,jdbcType=BIGINT},
+      sku_id = #{skuId,jdbcType=BIGINT},
+      sort_number = #{sortNumber,jdbcType=INTEGER},
+      picture_status = #{pictureStatus,jdbcType=INTEGER},
+      created = #{created,jdbcType=TIMESTAMP},
+      modified = #{modified,jdbcType=TIMESTAMP}
+    where picture_id = #{pictureId,jdbcType=BIGINT}
+  </update>
+</mapper>

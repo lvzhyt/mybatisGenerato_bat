@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tg.citySite.dao.ItemBrandMapper" >
+  <resultMap id="BaseResultMap" type="com.tg.citySite.model.ItemBrand" >
+    <id column="barnd_id" property="barndId" jdbcType="BIGINT" />
+    <result column="brand_name" property="brandName" jdbcType="VARCHAR" />
+    <result column="brand_logo_url" property="brandLogoUrl" jdbcType="VARCHAR" />
+    <result column="brand_key" property="brandKey" jdbcType="VARCHAR" />
+    <result column="brand_staus" property="brandStaus" jdbcType="INTEGER" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    barnd_id, brand_name, brand_logo_url, brand_key, brand_staus, created, modified
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from item_brand
+    where barnd_id = #{barndId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from item_brand
+    where barnd_id = #{barndId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tg.citySite.model.ItemBrand" >
+    insert into item_brand (barnd_id, brand_name, brand_logo_url, 
+      brand_key, brand_staus, created, 
+      modified)
+    values (#{barndId,jdbcType=BIGINT}, #{brandName,jdbcType=VARCHAR}, #{brandLogoUrl,jdbcType=VARCHAR}, 
+      #{brandKey,jdbcType=VARCHAR}, #{brandStaus,jdbcType=INTEGER}, #{created,jdbcType=TIMESTAMP}, 
+      #{modified,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tg.citySite.model.ItemBrand" >
+    insert into item_brand
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="barndId != null" >
+        barnd_id,
+      </if>
+      <if test="brandName != null" >
+        brand_name,
+      </if>
+      <if test="brandLogoUrl != null" >
+        brand_logo_url,
+      </if>
+      <if test="brandKey != null" >
+        brand_key,
+      </if>
+      <if test="brandStaus != null" >
+        brand_staus,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="modified != null" >
+        modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="barndId != null" >
+        #{barndId,jdbcType=BIGINT},
+      </if>
+      <if test="brandName != null" >
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandLogoUrl != null" >
+        #{brandLogoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="brandKey != null" >
+        #{brandKey,jdbcType=VARCHAR},
+      </if>
+      <if test="brandStaus != null" >
+        #{brandStaus,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null" >
+        #{modified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tg.citySite.model.ItemBrand" >
+    update item_brand
+    <set >
+      <if test="brandName != null" >
+        brand_name = #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandLogoUrl != null" >
+        brand_logo_url = #{brandLogoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="brandKey != null" >
+        brand_key = #{brandKey,jdbcType=VARCHAR},
+      </if>
+      <if test="brandStaus != null" >
+        brand_staus = #{brandStaus,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null" >
+        modified = #{modified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where barnd_id = #{barndId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tg.citySite.model.ItemBrand" >
+    update item_brand
+    set brand_name = #{brandName,jdbcType=VARCHAR},
+      brand_logo_url = #{brandLogoUrl,jdbcType=VARCHAR},
+      brand_key = #{brandKey,jdbcType=VARCHAR},
+      brand_staus = #{brandStaus,jdbcType=INTEGER},
+      created = #{created,jdbcType=TIMESTAMP},
+      modified = #{modified,jdbcType=TIMESTAMP}
+    where barnd_id = #{barndId,jdbcType=BIGINT}
+  </update>
+</mapper>

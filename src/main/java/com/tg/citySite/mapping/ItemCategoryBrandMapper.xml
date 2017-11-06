@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tg.citySite.dao.ItemCategoryBrandMapper" >
+  <resultMap id="BaseResultMap" type="com.tg.citySite.model.ItemCategoryBrand" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="brand_id" property="brandId" jdbcType="BIGINT" />
+    <result column="second_lev_cat_id" property="secondLevCatId" jdbcType="BIGINT" />
+    <result column="third_lev_cat_id" property="thirdLevCatId" jdbcType="BIGINT" />
+    <result column="cbrand_status" property="cbrandStatus" jdbcType="INTEGER" />
+    <result column="sort_number" property="sortNumber" jdbcType="INTEGER" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, brand_id, second_lev_cat_id, third_lev_cat_id, cbrand_status, sort_number, created, 
+    modified
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from item_category_brand
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from item_category_brand
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tg.citySite.model.ItemCategoryBrand" >
+    insert into item_category_brand (id, brand_id, second_lev_cat_id, 
+      third_lev_cat_id, cbrand_status, sort_number, 
+      created, modified)
+    values (#{id,jdbcType=BIGINT}, #{brandId,jdbcType=BIGINT}, #{secondLevCatId,jdbcType=BIGINT}, 
+      #{thirdLevCatId,jdbcType=BIGINT}, #{cbrandStatus,jdbcType=INTEGER}, #{sortNumber,jdbcType=INTEGER}, 
+      #{created,jdbcType=TIMESTAMP}, #{modified,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tg.citySite.model.ItemCategoryBrand" >
+    insert into item_category_brand
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="secondLevCatId != null" >
+        second_lev_cat_id,
+      </if>
+      <if test="thirdLevCatId != null" >
+        third_lev_cat_id,
+      </if>
+      <if test="cbrandStatus != null" >
+        cbrand_status,
+      </if>
+      <if test="sortNumber != null" >
+        sort_number,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="modified != null" >
+        modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="secondLevCatId != null" >
+        #{secondLevCatId,jdbcType=BIGINT},
+      </if>
+      <if test="thirdLevCatId != null" >
+        #{thirdLevCatId,jdbcType=BIGINT},
+      </if>
+      <if test="cbrandStatus != null" >
+        #{cbrandStatus,jdbcType=INTEGER},
+      </if>
+      <if test="sortNumber != null" >
+        #{sortNumber,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null" >
+        #{modified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tg.citySite.model.ItemCategoryBrand" >
+    update item_category_brand
+    <set >
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="secondLevCatId != null" >
+        second_lev_cat_id = #{secondLevCatId,jdbcType=BIGINT},
+      </if>
+      <if test="thirdLevCatId != null" >
+        third_lev_cat_id = #{thirdLevCatId,jdbcType=BIGINT},
+      </if>
+      <if test="cbrandStatus != null" >
+        cbrand_status = #{cbrandStatus,jdbcType=INTEGER},
+      </if>
+      <if test="sortNumber != null" >
+        sort_number = #{sortNumber,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null" >
+        modified = #{modified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tg.citySite.model.ItemCategoryBrand" >
+    update item_category_brand
+    set brand_id = #{brandId,jdbcType=BIGINT},
+      second_lev_cat_id = #{secondLevCatId,jdbcType=BIGINT},
+      third_lev_cat_id = #{thirdLevCatId,jdbcType=BIGINT},
+      cbrand_status = #{cbrandStatus,jdbcType=INTEGER},
+      sort_number = #{sortNumber,jdbcType=INTEGER},
+      created = #{created,jdbcType=TIMESTAMP},
+      modified = #{modified,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

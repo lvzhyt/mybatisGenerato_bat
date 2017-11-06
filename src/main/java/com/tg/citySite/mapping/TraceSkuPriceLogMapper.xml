@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tg.citySite.dao.TraceSkuPriceLogMapper" >
+  <resultMap id="BaseResultMap" type="com.tg.citySite.model.TraceSkuPriceLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="item_id" property="itemId" jdbcType="BIGINT" />
+    <result column="sku_id" property="skuId" jdbcType="BIGINT" />
+    <result column="area_id" property="areaId" jdbcType="BIGINT" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="area_number" property="areaNumber" jdbcType="INTEGER" />
+    <result column="cost_price" property="costPrice" jdbcType="DECIMAL" />
+    <result column="market_price" property="marketPrice" jdbcType="DECIMAL" />
+    <result column="sell_price" property="sellPrice" jdbcType="DECIMAL" />
+    <result column="seller_id" property="sellerId" jdbcType="BIGINT" />
+    <result column="shop_id" property="shopId" jdbcType="BIGINT" />
+    <result column="sell_stepped" property="sellStepped" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, item_id, sku_id, area_id, area_name, area_number, cost_price, market_price, sell_price, 
+    seller_id, shop_id, sell_stepped, create_time, create_user, description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from trace_sku_price_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from trace_sku_price_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tg.citySite.model.TraceSkuPriceLog" >
+    insert into trace_sku_price_log (id, item_id, sku_id, 
+      area_id, area_name, area_number, 
+      cost_price, market_price, sell_price, 
+      seller_id, shop_id, sell_stepped, 
+      create_time, create_user, description
+      )
+    values (#{id,jdbcType=BIGINT}, #{itemId,jdbcType=BIGINT}, #{skuId,jdbcType=BIGINT}, 
+      #{areaId,jdbcType=BIGINT}, #{areaName,jdbcType=VARCHAR}, #{areaNumber,jdbcType=INTEGER}, 
+      #{costPrice,jdbcType=DECIMAL}, #{marketPrice,jdbcType=DECIMAL}, #{sellPrice,jdbcType=DECIMAL}, 
+      #{sellerId,jdbcType=BIGINT}, #{shopId,jdbcType=BIGINT}, #{sellStepped,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tg.citySite.model.TraceSkuPriceLog" >
+    insert into trace_sku_price_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="itemId != null" >
+        item_id,
+      </if>
+      <if test="skuId != null" >
+        sku_id,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="areaName != null" >
+        area_name,
+      </if>
+      <if test="areaNumber != null" >
+        area_number,
+      </if>
+      <if test="costPrice != null" >
+        cost_price,
+      </if>
+      <if test="marketPrice != null" >
+        market_price,
+      </if>
+      <if test="sellPrice != null" >
+        sell_price,
+      </if>
+      <if test="sellerId != null" >
+        seller_id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="sellStepped != null" >
+        sell_stepped,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="itemId != null" >
+        #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=BIGINT},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaNumber != null" >
+        #{areaNumber,jdbcType=INTEGER},
+      </if>
+      <if test="costPrice != null" >
+        #{costPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="marketPrice != null" >
+        #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sellPrice != null" >
+        #{sellPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="sellStepped != null" >
+        #{sellStepped,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tg.citySite.model.TraceSkuPriceLog" >
+    update trace_sku_price_log
+    <set >
+      <if test="itemId != null" >
+        item_id = #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="skuId != null" >
+        sku_id = #{skuId,jdbcType=BIGINT},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaNumber != null" >
+        area_number = #{areaNumber,jdbcType=INTEGER},
+      </if>
+      <if test="costPrice != null" >
+        cost_price = #{costPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="marketPrice != null" >
+        market_price = #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sellPrice != null" >
+        sell_price = #{sellPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sellerId != null" >
+        seller_id = #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="sellStepped != null" >
+        sell_stepped = #{sellStepped,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tg.citySite.model.TraceSkuPriceLog" >
+    update trace_sku_price_log
+    set item_id = #{itemId,jdbcType=BIGINT},
+      sku_id = #{skuId,jdbcType=BIGINT},
+      area_id = #{areaId,jdbcType=BIGINT},
+      area_name = #{areaName,jdbcType=VARCHAR},
+      area_number = #{areaNumber,jdbcType=INTEGER},
+      cost_price = #{costPrice,jdbcType=DECIMAL},
+      market_price = #{marketPrice,jdbcType=DECIMAL},
+      sell_price = #{sellPrice,jdbcType=DECIMAL},
+      seller_id = #{sellerId,jdbcType=BIGINT},
+      shop_id = #{shopId,jdbcType=BIGINT},
+      sell_stepped = #{sellStepped,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

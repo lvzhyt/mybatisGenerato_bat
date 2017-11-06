@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tg.citySite.dao.ShopMapper" >
+  <resultMap id="BaseResultMap" type="com.tg.citySite.model.Shop" >
+    <id column="shop_id" property="shopId" jdbcType="BIGINT" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="seller_id" property="sellerId" jdbcType="BIGINT" />
+    <result column="keyword" property="keyword" jdbcType="VARCHAR" />
+    <result column="seller_brand" property="sellerBrand" jdbcType="VARCHAR" />
+    <result column="shop_url" property="shopUrl" jdbcType="VARCHAR" />
+    <result column="logo_url" property="logoUrl" jdbcType="VARCHAR" />
+    <result column="brand_id" property="brandId" jdbcType="BIGINT" />
+    <result column="link_man1" property="linkMan1" jdbcType="VARCHAR" />
+    <result column="link_man2" property="linkMan2" jdbcType="VARCHAR" />
+    <result column="link_phone1" property="linkPhone1" jdbcType="VARCHAR" />
+    <result column="link_phone2" property="linkPhone2" jdbcType="VARCHAR" />
+    <result column="addr" property="addr" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="longitude" property="longitude" jdbcType="DOUBLE" />
+    <result column="latitude" property="latitude" jdbcType="DOUBLE" />
+    <result column="shop_status" property="shopStatus" jdbcType="INTEGER" />
+    <result column="province_code" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="city_code" property="cityCode" jdbcType="VARCHAR" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="district_code" property="districtCode" jdbcType="VARCHAR" />
+    <result column="district_name" property="districtName" jdbcType="VARCHAR" />
+    <result column="street_name" property="streetName" jdbcType="VARCHAR" />
+    <result column="run_status" property="runStatus" jdbcType="INTEGER" />
+    <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    shop_id, shop_name, seller_id, keyword, seller_brand, shop_url, logo_url, brand_id, 
+    link_man1, link_man2, link_phone1, link_phone2, addr, area, longitude, latitude, 
+    shop_status, province_code, province_name, city_code, city_name, district_code, district_name, 
+    street_name, run_status, introduce, created, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from shop
+    where shop_id = #{shopId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from shop
+    where shop_id = #{shopId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tg.citySite.model.Shop" >
+    insert into shop (shop_id, shop_name, seller_id, 
+      keyword, seller_brand, shop_url, 
+      logo_url, brand_id, link_man1, 
+      link_man2, link_phone1, link_phone2, 
+      addr, area, longitude, 
+      latitude, shop_status, province_code, 
+      province_name, city_code, city_name, 
+      district_code, district_name, street_name, 
+      run_status, introduce, created, 
+      remark)
+    values (#{shopId,jdbcType=BIGINT}, #{shopName,jdbcType=VARCHAR}, #{sellerId,jdbcType=BIGINT}, 
+      #{keyword,jdbcType=VARCHAR}, #{sellerBrand,jdbcType=VARCHAR}, #{shopUrl,jdbcType=VARCHAR}, 
+      #{logoUrl,jdbcType=VARCHAR}, #{brandId,jdbcType=BIGINT}, #{linkMan1,jdbcType=VARCHAR}, 
+      #{linkMan2,jdbcType=VARCHAR}, #{linkPhone1,jdbcType=VARCHAR}, #{linkPhone2,jdbcType=VARCHAR}, 
+      #{addr,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{longitude,jdbcType=DOUBLE}, 
+      #{latitude,jdbcType=DOUBLE}, #{shopStatus,jdbcType=INTEGER}, #{provinceCode,jdbcType=VARCHAR}, 
+      #{provinceName,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, 
+      #{districtCode,jdbcType=VARCHAR}, #{districtName,jdbcType=VARCHAR}, #{streetName,jdbcType=VARCHAR}, 
+      #{runStatus,jdbcType=INTEGER}, #{introduce,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tg.citySite.model.Shop" >
+    insert into shop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="sellerId != null" >
+        seller_id,
+      </if>
+      <if test="keyword != null" >
+        keyword,
+      </if>
+      <if test="sellerBrand != null" >
+        seller_brand,
+      </if>
+      <if test="shopUrl != null" >
+        shop_url,
+      </if>
+      <if test="logoUrl != null" >
+        logo_url,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="linkMan1 != null" >
+        link_man1,
+      </if>
+      <if test="linkMan2 != null" >
+        link_man2,
+      </if>
+      <if test="linkPhone1 != null" >
+        link_phone1,
+      </if>
+      <if test="linkPhone2 != null" >
+        link_phone2,
+      </if>
+      <if test="addr != null" >
+        addr,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="shopStatus != null" >
+        shop_status,
+      </if>
+      <if test="provinceCode != null" >
+        province_code,
+      </if>
+      <if test="provinceName != null" >
+        province_name,
+      </if>
+      <if test="cityCode != null" >
+        city_code,
+      </if>
+      <if test="cityName != null" >
+        city_name,
+      </if>
+      <if test="districtCode != null" >
+        district_code,
+      </if>
+      <if test="districtName != null" >
+        district_name,
+      </if>
+      <if test="streetName != null" >
+        street_name,
+      </if>
+      <if test="runStatus != null" >
+        run_status,
+      </if>
+      <if test="introduce != null" >
+        introduce,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shopId != null" >
+        #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="keyword != null" >
+        #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerBrand != null" >
+        #{sellerBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="shopUrl != null" >
+        #{shopUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null" >
+        #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="linkMan1 != null" >
+        #{linkMan1,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMan2 != null" >
+        #{linkMan2,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone1 != null" >
+        #{linkPhone1,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone2 != null" >
+        #{linkPhone2,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null" >
+        #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="shopStatus != null" >
+        #{shopStatus,jdbcType=INTEGER},
+      </if>
+      <if test="provinceCode != null" >
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null" >
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="districtCode != null" >
+        #{districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="districtName != null" >
+        #{districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="streetName != null" >
+        #{streetName,jdbcType=VARCHAR},
+      </if>
+      <if test="runStatus != null" >
+        #{runStatus,jdbcType=INTEGER},
+      </if>
+      <if test="introduce != null" >
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tg.citySite.model.Shop" >
+    update shop
+    <set >
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerId != null" >
+        seller_id = #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="keyword != null" >
+        keyword = #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerBrand != null" >
+        seller_brand = #{sellerBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="shopUrl != null" >
+        shop_url = #{shopUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null" >
+        logo_url = #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="linkMan1 != null" >
+        link_man1 = #{linkMan1,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMan2 != null" >
+        link_man2 = #{linkMan2,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone1 != null" >
+        link_phone1 = #{linkPhone1,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone2 != null" >
+        link_phone2 = #{linkPhone2,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null" >
+        addr = #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="shopStatus != null" >
+        shop_status = #{shopStatus,jdbcType=INTEGER},
+      </if>
+      <if test="provinceCode != null" >
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null" >
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="districtCode != null" >
+        district_code = #{districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="districtName != null" >
+        district_name = #{districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="streetName != null" >
+        street_name = #{streetName,jdbcType=VARCHAR},
+      </if>
+      <if test="runStatus != null" >
+        run_status = #{runStatus,jdbcType=INTEGER},
+      </if>
+      <if test="introduce != null" >
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where shop_id = #{shopId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tg.citySite.model.Shop" >
+    update shop
+    set shop_name = #{shopName,jdbcType=VARCHAR},
+      seller_id = #{sellerId,jdbcType=BIGINT},
+      keyword = #{keyword,jdbcType=VARCHAR},
+      seller_brand = #{sellerBrand,jdbcType=VARCHAR},
+      shop_url = #{shopUrl,jdbcType=VARCHAR},
+      logo_url = #{logoUrl,jdbcType=VARCHAR},
+      brand_id = #{brandId,jdbcType=BIGINT},
+      link_man1 = #{linkMan1,jdbcType=VARCHAR},
+      link_man2 = #{linkMan2,jdbcType=VARCHAR},
+      link_phone1 = #{linkPhone1,jdbcType=VARCHAR},
+      link_phone2 = #{linkPhone2,jdbcType=VARCHAR},
+      addr = #{addr,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      shop_status = #{shopStatus,jdbcType=INTEGER},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      district_code = #{districtCode,jdbcType=VARCHAR},
+      district_name = #{districtName,jdbcType=VARCHAR},
+      street_name = #{streetName,jdbcType=VARCHAR},
+      run_status = #{runStatus,jdbcType=INTEGER},
+      introduce = #{introduce,jdbcType=VARCHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where shop_id = #{shopId,jdbcType=BIGINT}
+  </update>
+</mapper>

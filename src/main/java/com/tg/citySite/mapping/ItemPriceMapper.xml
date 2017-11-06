@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tg.citySite.dao.ItemPriceMapper" >
+  <resultMap id="BaseResultMap" type="com.tg.citySite.model.ItemPrice" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="item_id" property="itemId" jdbcType="BIGINT" />
+    <result column="sell_id" property="sellId" jdbcType="BIGINT" />
+    <result column="shop_id" property="shopId" jdbcType="BIGINT" />
+    <result column="area_id" property="areaId" jdbcType="BIGINT" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="max_num" property="maxNum" jdbcType="BIGINT" />
+    <result column="min_num" property="minNum" jdbcType="BIGINT" />
+    <result column="price_status" property="priceStatus" jdbcType="INTEGER" />
+    <result column="sell_price" property="sellPrice" jdbcType="DECIMAL" />
+    <result column="step_index" property="stepIndex" jdbcType="INTEGER" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, item_id, sell_id, shop_id, area_id, area_name, max_num, min_num, price_status, 
+    sell_price, step_index, created, modified
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from item_price
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from item_price
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tg.citySite.model.ItemPrice" >
+    insert into item_price (id, item_id, sell_id, 
+      shop_id, area_id, area_name, 
+      max_num, min_num, price_status, 
+      sell_price, step_index, created, 
+      modified)
+    values (#{id,jdbcType=BIGINT}, #{itemId,jdbcType=BIGINT}, #{sellId,jdbcType=BIGINT}, 
+      #{shopId,jdbcType=BIGINT}, #{areaId,jdbcType=BIGINT}, #{areaName,jdbcType=VARCHAR}, 
+      #{maxNum,jdbcType=BIGINT}, #{minNum,jdbcType=BIGINT}, #{priceStatus,jdbcType=INTEGER}, 
+      #{sellPrice,jdbcType=DECIMAL}, #{stepIndex,jdbcType=INTEGER}, #{created,jdbcType=TIMESTAMP}, 
+      #{modified,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tg.citySite.model.ItemPrice" >
+    insert into item_price
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="itemId != null" >
+        item_id,
+      </if>
+      <if test="sellId != null" >
+        sell_id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="areaName != null" >
+        area_name,
+      </if>
+      <if test="maxNum != null" >
+        max_num,
+      </if>
+      <if test="minNum != null" >
+        min_num,
+      </if>
+      <if test="priceStatus != null" >
+        price_status,
+      </if>
+      <if test="sellPrice != null" >
+        sell_price,
+      </if>
+      <if test="stepIndex != null" >
+        step_index,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="modified != null" >
+        modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="itemId != null" >
+        #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="sellId != null" >
+        #{sellId,jdbcType=BIGINT},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="maxNum != null" >
+        #{maxNum,jdbcType=BIGINT},
+      </if>
+      <if test="minNum != null" >
+        #{minNum,jdbcType=BIGINT},
+      </if>
+      <if test="priceStatus != null" >
+        #{priceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="sellPrice != null" >
+        #{sellPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="stepIndex != null" >
+        #{stepIndex,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null" >
+        #{modified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tg.citySite.model.ItemPrice" >
+    update item_price
+    <set >
+      <if test="itemId != null" >
+        item_id = #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="sellId != null" >
+        sell_id = #{sellId,jdbcType=BIGINT},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="maxNum != null" >
+        max_num = #{maxNum,jdbcType=BIGINT},
+      </if>
+      <if test="minNum != null" >
+        min_num = #{minNum,jdbcType=BIGINT},
+      </if>
+      <if test="priceStatus != null" >
+        price_status = #{priceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="sellPrice != null" >
+        sell_price = #{sellPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="stepIndex != null" >
+        step_index = #{stepIndex,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null" >
+        modified = #{modified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tg.citySite.model.ItemPrice" >
+    update item_price
+    set item_id = #{itemId,jdbcType=BIGINT},
+      sell_id = #{sellId,jdbcType=BIGINT},
+      shop_id = #{shopId,jdbcType=BIGINT},
+      area_id = #{areaId,jdbcType=BIGINT},
+      area_name = #{areaName,jdbcType=VARCHAR},
+      max_num = #{maxNum,jdbcType=BIGINT},
+      min_num = #{minNum,jdbcType=BIGINT},
+      price_status = #{priceStatus,jdbcType=INTEGER},
+      sell_price = #{sellPrice,jdbcType=DECIMAL},
+      step_index = #{stepIndex,jdbcType=INTEGER},
+      created = #{created,jdbcType=TIMESTAMP},
+      modified = #{modified,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

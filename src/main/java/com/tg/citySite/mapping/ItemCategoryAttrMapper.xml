@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tg.citySite.dao.ItemCategoryAttrMapper" >
+  <resultMap id="BaseResultMap" type="com.tg.citySite.model.ItemCategoryAttr" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="cat_id" property="catId" jdbcType="BIGINT" />
+    <result column="attr_id" property="attrId" jdbcType="BIGINT" />
+    <result column="attr_type" property="attrType" jdbcType="INTEGER" />
+    <result column="features" property="features" jdbcType="VARCHAR" />
+    <result column="option_type" property="optionType" jdbcType="INTEGER" />
+    <result column="select_type" property="selectType" jdbcType="INTEGER" />
+    <result column="sort_number" property="sortNumber" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cat_id, attr_id, attr_type, features, option_type, select_type, sort_number, 
+    status, created, modified
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from item_category_attr
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from item_category_attr
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tg.citySite.model.ItemCategoryAttr" >
+    insert into item_category_attr (id, cat_id, attr_id, 
+      attr_type, features, option_type, 
+      select_type, sort_number, status, 
+      created, modified)
+    values (#{id,jdbcType=BIGINT}, #{catId,jdbcType=BIGINT}, #{attrId,jdbcType=BIGINT}, 
+      #{attrType,jdbcType=INTEGER}, #{features,jdbcType=VARCHAR}, #{optionType,jdbcType=INTEGER}, 
+      #{selectType,jdbcType=INTEGER}, #{sortNumber,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{created,jdbcType=TIMESTAMP}, #{modified,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tg.citySite.model.ItemCategoryAttr" >
+    insert into item_category_attr
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="catId != null" >
+        cat_id,
+      </if>
+      <if test="attrId != null" >
+        attr_id,
+      </if>
+      <if test="attrType != null" >
+        attr_type,
+      </if>
+      <if test="features != null" >
+        features,
+      </if>
+      <if test="optionType != null" >
+        option_type,
+      </if>
+      <if test="selectType != null" >
+        select_type,
+      </if>
+      <if test="sortNumber != null" >
+        sort_number,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="modified != null" >
+        modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="catId != null" >
+        #{catId,jdbcType=BIGINT},
+      </if>
+      <if test="attrId != null" >
+        #{attrId,jdbcType=BIGINT},
+      </if>
+      <if test="attrType != null" >
+        #{attrType,jdbcType=INTEGER},
+      </if>
+      <if test="features != null" >
+        #{features,jdbcType=VARCHAR},
+      </if>
+      <if test="optionType != null" >
+        #{optionType,jdbcType=INTEGER},
+      </if>
+      <if test="selectType != null" >
+        #{selectType,jdbcType=INTEGER},
+      </if>
+      <if test="sortNumber != null" >
+        #{sortNumber,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null" >
+        #{modified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tg.citySite.model.ItemCategoryAttr" >
+    update item_category_attr
+    <set >
+      <if test="catId != null" >
+        cat_id = #{catId,jdbcType=BIGINT},
+      </if>
+      <if test="attrId != null" >
+        attr_id = #{attrId,jdbcType=BIGINT},
+      </if>
+      <if test="attrType != null" >
+        attr_type = #{attrType,jdbcType=INTEGER},
+      </if>
+      <if test="features != null" >
+        features = #{features,jdbcType=VARCHAR},
+      </if>
+      <if test="optionType != null" >
+        option_type = #{optionType,jdbcType=INTEGER},
+      </if>
+      <if test="selectType != null" >
+        select_type = #{selectType,jdbcType=INTEGER},
+      </if>
+      <if test="sortNumber != null" >
+        sort_number = #{sortNumber,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null" >
+        modified = #{modified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tg.citySite.model.ItemCategoryAttr" >
+    update item_category_attr
+    set cat_id = #{catId,jdbcType=BIGINT},
+      attr_id = #{attrId,jdbcType=BIGINT},
+      attr_type = #{attrType,jdbcType=INTEGER},
+      features = #{features,jdbcType=VARCHAR},
+      option_type = #{optionType,jdbcType=INTEGER},
+      select_type = #{selectType,jdbcType=INTEGER},
+      sort_number = #{sortNumber,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      created = #{created,jdbcType=TIMESTAMP},
+      modified = #{modified,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
